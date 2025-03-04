@@ -45,6 +45,7 @@
 
 //* percobaan ke-2
 const submit = document.getElementById("submit");
+const reset = document.getElementById("reset")
 let mistake = 0;
 
 submit.addEventListener("click", function () {
@@ -72,13 +73,31 @@ submit.addEventListener("click", function () {
       const benar = document.getElementById("benar");
       benar.classList.remove("hide");
       document.getElementById("benar").scrollIntoView();
+      console.log(`nice answer`)
     }
   } else {
     const salah = document.getElementById("salah");
     salah.classList.remove("hide");
     document.getElementById("salah").scrollIntoView();
-    mistake = 1;
+    mistake += 1;
 
-    console.log(mistake);
+    console.log(`wrong answer ${mistake} times`);
   }
 });
+
+reset.addEventListener("click", () => {
+  const elements = [
+    document.getElementById("benar"),
+    document.getElementById("akhirnya"),
+    document.getElementById("salah"),
+  ];
+
+  for (let i = 0; i < elements.length; i++) {
+    if (!elements[i].classList.contains("hide")) {
+      elements[i].classList.add("hide");
+    }
+  }
+
+  mistake = 0;
+  console.log(`reset`)
+})
